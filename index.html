@@ -1,138 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mentes do Brasil</title>
-<meta name="description" content="As histórias dos brasileiros e brasileiras que, com coragem, ciência e arte, construíram o país.">
-<meta property="og:title" content="Mentes do Brasil">
-<meta property="og:description" content="Conheça quem construiu o Brasil, para cuidarmos melhor dele.">
-<meta name="theme-color" content="#0b3d24">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23009c3b'/><path d='M50 14 90 50 50 86 10 50Z' fill='%23ffdf00'/><circle cx='50' cy='50' r='19' fill='%23002776'/></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
-<script>document.documentElement.classList.add("js")</script>
-<script src="js/data.js" defer></script>
-<script src="js/stars.js" defer></script>
-<script src="js/main.js" defer></script>
-</head>
-<body>
-<a class="pular" href="#conteudo">Pular para o conteúdo</a>
-<div class="progresso" aria-hidden="true"></div>
-
-<header class="topo">
-  <a class="marca" href="#inicio" aria-label="Mentes do Brasil, início">
-    <span class="marca-losango" aria-hidden="true"></span> Mentes do Brasil
-  </a>
-  <nav aria-label="Seções">
-    <a href="#galeria">Personagens</a>
-    <a href="#linha-do-tempo">Linha do tempo</a>
-    <a href="#seu-papel">Seu papel</a>
-  </nav>
-</header>
-
-<section class="hero" id="inicio">
-  <canvas id="ceu" aria-hidden="true"></canvas>
-  <div class="hero-texto">
-    <p class="sobretitulo">Quatro séculos de história</p>
-    <h1 class="titulo-animado" aria-label="As mentes que construíram o Brasil">
-      <span>As</span> <span>mentes</span> <span>que</span> <span>construíram</span> <span class="ouro">o Brasil</span>
-    </h1>
-    <p class="hero-sub">Gente que, com coragem, ciência, arte e trabalho, fez deste país o que ele é. Conhecer essas histórias é o primeiro passo para cuidar melhor dele.</p>
-    <div class="hero-acoes">
-      <a class="botao" href="#galeria">Conhecer as histórias</a>
-      <button class="botao fantasma" type="button" id="aleatorio">Uma história ao acaso</button>
-    </div>
-  </div>
-  <a class="rolar" href="#manifesto" aria-label="Rolar para baixo"><span></span></a>
-</section>
-
-<main id="conteudo">
-  <section class="manifesto" id="manifesto">
-    <blockquote class="revelar">
-      <p>Um povo que não conhece a própria história não sabe o que tem a perder.</p>
-    </blockquote>
-    <div class="numeros">
-      <div class="revelar"><strong data-contar="0" id="n-pessoas">0</strong><span>brasileiros e brasileiras</span></div>
-      <div class="revelar"><strong data-contar="0" id="n-seculos">0</strong><span>séculos de história</span></div>
-      <div class="revelar"><strong data-contar="0" id="n-areas">0</strong><span>áreas em que mudaram o país</span></div>
-    </div>
-  </section>
-
-  <section class="galeria" id="galeria" aria-labelledby="titulo-galeria">
-    <div class="secao-cabeca revelar">
-      <p class="sobretitulo">Personagens</p>
-      <h2 id="titulo-galeria">Quem construiu o Brasil</h2>
-      <p>Escolha uma área ou procure por um nome. Clique em um card para ler a história completa.</p>
-    </div>
-
-    <div class="filtros revelar">
-      <label class="busca">
-        <span class="sr">Buscar por nome</span>
-        <input type="search" id="busca" placeholder="Buscar por nome, lugar ou feito…" autocomplete="off">
-      </label>
-      <div class="chips" id="chips" role="group" aria-label="Filtrar por área"></div>
-    </div>
-
-    <p class="contagem" id="contagem" aria-live="polite"></p>
-    <ul class="cards" id="cards"></ul>
-    <p class="vazio" id="vazio" hidden>Ninguém encontrado. Tente outro termo.</p>
-  </section>
-
-  <section class="linha" id="linha-do-tempo" aria-labelledby="titulo-linha">
-    <div class="secao-cabeca revelar">
-      <p class="sobretitulo">Linha do tempo</p>
-      <h2 id="titulo-linha">De Palmares ao século XXI</h2>
-      <p>Cada ponto é uma vida. Juntas, elas contam a história do país.</p>
-    </div>
-    <ol class="tempo" id="tempo"></ol>
-  </section>
-
-  <section class="papel" id="seu-papel" aria-labelledby="titulo-papel">
-    <div class="secao-cabeca revelar">
-      <p class="sobretitulo">E agora?</p>
-      <h2 id="titulo-papel">A história continua com você</h2>
-      <p>Nenhuma dessas pessoas esperou o país ficar pronto. Elas fizeram a sua parte. A nossa começa por coisas simples:</p>
-    </div>
-    <ol class="acoes">
-      <li class="revelar"><h3>Conheça</h3><p>Leia, visite museus, pergunte aos mais velhos. Quem conhece a história não aceita qualquer versão dela.</p></li>
-      <li class="revelar"><h3>Valorize a escola e a ciência</h3><p>De Nilo Peçanha a Paulo Freire, de Oswaldo Cruz a Lattes, o Brasil avançou quando investiu em conhecimento.</p></li>
-      <li class="revelar"><h3>Participe</h3><p>Vote com consciência, acompanhe quem você elegeu, envolva-se na sua comunidade. Bertha Lutz lutou anos pelo direito de votar.</p></li>
-      <li class="revelar"><h3>Cuide do que é de todos</h3><p>Praças, escolas, patrimônio histórico, rios e florestas. O que é público é nosso.</p></li>
-      <li class="revelar"><h3>Não se cale diante da injustiça</h3><p>Zumbi, Luiz Gama e o Dragão do Mar mostraram que a mudança começa quando alguém diz "não".</p></li>
-    </ol>
-  </section>
-</main>
-
-<footer class="rodape">
-  <p><strong>Mentes do Brasil</strong>: um projeto aberto de memória.</p>
-  <p>Os textos são resumos de domínio público. Encontrou um erro ou quer sugerir alguém? Contribua no repositório.</p>
-</footer>
-
-<dialog class="historia" id="historia" aria-labelledby="h-nome">
-  <article>
-    <button class="fechar" type="button" data-fechar aria-label="Fechar história">×</button>
-    <header class="h-cabeca">
-      <div class="monograma grande" id="h-mono" aria-hidden="true"></div>
-      <div>
-        <p class="h-apelido" id="h-apelido"></p>
-        <h2 id="h-nome"></h2>
-        <p class="h-meta" id="h-meta"></p>
-        <div class="tags" id="h-tags"></div>
-      </div>
-    </header>
-    <blockquote class="h-citacao" id="h-citacao" hidden></blockquote>
-    <div class="h-texto" id="h-texto"></div>
-    <h3>Marcos</h3>
-    <ol class="h-marcos" id="h-marcos"></ol>
-    <div class="h-legado"><h3>Legado</h3><p id="h-legado"></p></div>
-    <nav class="h-nav" aria-label="Outras histórias">
-      <button type="button" class="botao fantasma" id="h-ant">← Anterior</button>
-      <button type="button" class="botao fantasma" id="h-prox">Próxima →</button>
-    </nav>
-  </article>
-</dialog>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentes do Brasil</title>
+    <meta name="description" content="As histórias reais, sem mitos, de quem construiu o Brasil." />
+    <meta property="og:title" content="Mentes do Brasil" />
+    <meta property="og:description" content="Conheça a história real de quem construiu o Brasil, para cuidarmos melhor dele." />
+    <meta name="theme-color" content="#0b3d24" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23009c3b'/><path d='M50 14 90 50 50 86 10 50Z' fill='%23ffdf00'/><circle cx='50' cy='50' r='19' fill='%23002776'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

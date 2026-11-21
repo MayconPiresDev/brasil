@@ -1,8 +1,28 @@
-// Conteúdo do site. Para adicionar alguém, basta incluir um objeto em MENTES.
-// Campos: id (slug da URL), nome, apelido?, nascimento, morte, local, areas[],
-// resumo, historia[] (parágrafos), marcos[{ano, texto}], legado, citacao?{texto, fonte}
+// Conteúdo do site. Para adicionar alguém, inclua um objeto em MENTES e rode `npm test`.
+// Regra editorial: a verdade vem antes do mito. Fatos incômodos e documentados vão em `verdade`.
 
-const AREAS = {
+export type AreaId = keyof typeof AREAS;
+
+export interface Pessoa {
+  id: string;
+  nome: string;
+  apelido?: string;
+  nascimento: number;
+  morte: number;
+  local: string;
+  areas: AreaId[];
+  resumo: string;
+  historia: string[];
+  marcos: { ano: number; texto: string }[];
+  legado: string;
+  /** O que o mito costuma esconder. Fatos documentados ou o debate entre historiadores. */
+  verdade?: string[];
+  citacao?: { texto: string; fonte: string };
+  /** Para quem não tem retrato autêntico: a imagem é uma representação artística. */
+  imagem?: "foto" | "pintura" | "imaginada";
+}
+
+export const AREAS = {
   liberdade: { nome: "Liberdade", cor: "#c2410c" },
   politica:  { nome: "Política", cor: "#1d4ed8" },
   ciencia:   { nome: "Ciência", cor: "#0f766e" },
@@ -10,20 +30,20 @@ const AREAS = {
   letras:    { nome: "Letras", cor: "#7c3aed" },
   artes:     { nome: "Artes", cor: "#b45309" },
   educacao:  { nome: "Educação", cor: "#15803d" },
-};
+} as const satisfies Record<string, { nome: string; cor: string }>;
 
-const MENTES = [
+export const MENTES: Pessoa[] = [
   {
     id: "zumbi-dos-palmares",
     nome: "Zumbi dos Palmares",
     nascimento: 1655, morte: 1695,
     local: "Serra da Barriga, Alagoas",
     areas: ["liberdade"],
-    resumo: "Último líder do Quilombo dos Palmares, o maior símbolo de resistência à escravidão nas Américas.",
+    resumo: "Líder guerreiro do Quilombo dos Palmares. Herói da resistência negra e figura cheia de contradições.",
     historia: [
       "Nasceu livre em Palmares, um conjunto de comunidades formadas por pessoas que fugiram da escravidão na Serra da Barriga. Ainda criança, foi capturado e entregue a um padre, que o batizou de Francisco e o ensinou a ler. Aos quinze anos fugiu e voltou para casa.",
       "Palmares chegou a reunir milhares de pessoas e resistiu por quase um século a dezenas de expedições militares. Quando o líder Ganga Zumba aceitou um acordo de paz com o governo colonial, Zumbi recusou: a paz oferecida não libertava os que continuavam escravizados fora do quilombo.",
-      "Assumiu a liderança e resistiu até 1694, quando o bandeirante Domingos Jorge Velho destruiu a capital, Macaco. Zumbi escapou, mas foi traído e morto em 20 de novembro de 1695. A data de sua morte virou o Dia da Consciência Negra.",
+      "Zumbi não era um intelectual: era um chefe militar, num mundo de guerra permanente. Assumiu a liderança e resistiu até 1694, quando o bandeirante Domingos Jorge Velho destruiu a capital, Macaco. Zumbi escapou, mas foi traído e morto em 20 de novembro de 1695. A data de sua morte virou o Dia da Consciência Negra.",
     ],
     marcos: [
       { ano: 1655, texto: "Nasce no Quilombo dos Palmares." },
@@ -32,7 +52,13 @@ const MENTES = [
       { ano: 1695, texto: "É morto em 20 de novembro." },
       { ano: 2024, texto: "O 20 de novembro passa a ser feriado nacional." },
     ],
-    legado: "Lembra que a liberdade no Brasil não foi um presente: foi conquistada por quem resistiu.",
+    legado: "Palmares mostra que a escravidão foi combatida desde o início. Zumbi virou símbolo sobretudo no século XX, e o símbolo é maior que o homem que conhecemos.",
+    verdade: [
+      "Quase tudo o que se sabe sobre Zumbi vem de documentos escritos por seus inimigos: autoridades coloniais e militares que o combatiam.",
+      "Esses relatos registram que em Palmares também havia cativos. Pessoas capturadas nos ataques a fazendas e povoados, e quem não tinha fugido por vontade própria, podiam ser mantidas em servidão. Na África e nas Américas daquele tempo, a escravidão de prisioneiros de guerra era comum.",
+      "Os ataques do quilombo às vilas vizinhas para obter armas, mantimentos e pessoas eram violentos. Historiadores ainda debatem o quanto disso é exagero da propaganda colonial e o quanto é fato.",
+      "Não existe nenhum retrato de Zumbi. As imagens conhecidas são representações criadas séculos depois.",
+    ],
   },
   {
     id: "aleijadinho",
@@ -55,6 +81,11 @@ const MENTES = [
       { ano: 1985, texto: "O Santuário de Congonhas vira Patrimônio Mundial da UNESCO." },
     ],
     legado: "Mostrou que o talento brasileiro cria algo próprio, mesmo nas piores condições.",
+    verdade: [
+      "Quase toda a sua biografia vem de um único texto, escrito por Rodrigo Bretas em 1858, mais de quarenta anos após sua morte. Parte dela pode ser lenda.",
+      "Muitas obras atribuídas a ele foram feitas, ao menos em parte, pela sua oficina de ajudantes e escravizados.",
+      "Não há retrato autêntico. A imagem mais conhecida é um \"suposto retrato\".",
+    ],
   },
   {
     id: "tiradentes",
@@ -76,6 +107,11 @@ const MENTES = [
       { ano: 1965, texto: "Declarado Patrono Cívico da Nação Brasileira." },
     ],
     legado: "O 21 de abril lembra que a ideia de um Brasil livre custou vidas.",
+    verdade: [
+      "A imagem de Tiradentes barbudo e cabeludo, parecido com Cristo, foi criada décadas depois pela República, que precisava de um herói. Como militar preso, ele provavelmente tinha barba e cabelo raspados.",
+      "A Inconfidência foi um movimento da elite mineira, motivado sobretudo pelos impostos. O plano não previa o fim da escravidão: vários inconfidentes eram donos de escravizados.",
+      "Ele foi o único executado também porque era o de menor posição social do grupo.",
+    ],
     citacao: { texto: "Se dez vidas eu tivesse, dez vidas eu daria.", fonte: "Frase atribuída a Tiradentes" },
   },
   {
@@ -98,6 +134,10 @@ const MENTES = [
       { ano: 1831, texto: "Torna-se tutor do menino Pedro II." },
     ],
     legado: "Provou que ciência e projeto de país andam juntos.",
+    verdade: [
+      "Como ministro, perseguiu adversários políticos: em 1822 abriu processos e mandou prender e deportar opositores, episódio conhecido como \"Bonifácia\".",
+      "Defendia o fim da escravidão, mas de forma lenta e gradual, para não prejudicar a economia dos proprietários.",
+    ],
   },
   {
     id: "maria-firmina-dos-reis",
@@ -139,6 +179,10 @@ const MENTES = [
       { ano: 1889, texto: "Proclamação da República; parte para o exílio." },
     ],
     legado: "Mostrou que governar também é investir em conhecimento.",
+    verdade: [
+      "Durante quase todo o seu reinado, a escravidão foi legal e o Brasil foi o último país das Américas a aboli-la. O imperador era contra a escravidão em princípio, mas agiu com muita cautela para não romper com os fazendeiros.",
+      "No seu governo aconteceu a Guerra do Paraguai (1864–1870). O Paraguai perdeu grande parte da sua população, e muitos soldados brasileiros eram escravizados enviados para lutar no lugar dos filhos de seus senhores.",
+    ],
   },
   {
     id: "luiz-gama",
@@ -160,6 +204,9 @@ const MENTES = [
       { ano: 2015, texto: "A OAB o reconhece oficialmente como advogado." },
     ],
     legado: "Transformou a lei, feita para oprimir, em ferramenta de libertação.",
+    verdade: [
+      "Sua mãe, Luísa Mahin, é conhecida quase só pelo que o próprio Luiz Gama escreveu sobre ela. Muito do que se conta sobre a participação dela em revoltas na Bahia não tem comprovação em documentos.",
+    ],
   },
   {
     id: "andre-reboucas",
@@ -201,6 +248,10 @@ const MENTES = [
       { ano: 1884, texto: "O Ceará abole a escravidão, em 25 de março." },
     ],
     legado: "Provou que uma recusa coletiva de trabalhadores comuns pode mudar o rumo de um país.",
+    verdade: [
+      "A greve não foi obra de um homem só: teve apoio e organização de sociedades abolicionistas cearenses, como a Sociedade Cearense Libertadora, formadas em boa parte por gente da elite letrada.",
+      "A grande seca de 1877–1879 tinha empobrecido os proprietários cearenses, que já vendiam seus escravizados para o Sul. Isso ajudou a tornar a abolição no Ceará mais rápida do que em outras províncias.",
+    ],
     citacao: { texto: "No porto do Ceará não se embarcam mais escravos.", fonte: "Lema da greve dos jangadeiros, 1881" },
   },
   {
@@ -223,6 +274,10 @@ const MENTES = [
       { ano: 1899, texto: "Publica Dom Casmurro." },
     ],
     legado: "A prova de que o gênio brasileiro nasce em qualquer lugar, inclusive no morro.",
+    verdade: [
+      "Durante muito tempo foi retratado como um homem branco. Sua certidão de óbito o registrou como \"branco\", e fotos e ilustrações clarearam sua pele. Só nas últimas décadas sua origem negra foi plenamente reconhecida.",
+      "Foi criticado por não ter militado abertamente no abolicionismo. Pesquisas recentes mostram que a crítica à escravidão está em sua obra, por meio da ironia.",
+    ],
     citacao: { texto: "Ao vencedor, as batatas!", fonte: "Quincas Borba, 1891" },
   },
   {
@@ -244,6 +299,10 @@ const MENTES = [
       { ano: 1889, texto: "Parte para o exílio com a família." },
     ],
     legado: "O 13 de maio fechou um capítulo, mas o país ainda devia aos libertos terra, escola e trabalho.",
+    verdade: [
+      "O apelido de \"Redentora\" criou a ideia de que a abolição foi um presente da monarquia. Na verdade, ela veio depois de décadas de fugas em massa, quilombos, revoltas e campanha abolicionista.",
+      "A Lei Áurea tem só dois artigos. Não previu terra, escola, trabalho nem indenização para os libertos, que foram deixados à própria sorte.",
+    ],
   },
   {
     id: "chiquinha-gonzaga",
@@ -287,6 +346,10 @@ const MENTES = [
       { ano: 1905, texto: "Primeiro embaixador do Brasil em Washington." },
     ],
     legado: "Mostrou que acabar com a escravidão era só o começo: era preciso desfazer sua obra.",
+    verdade: [
+      "Defendia uma abolição feita \"de cima\", pelo Parlamento. Em O Abolicionismo, escreveu que a campanha não se dirigia aos escravizados, e era contra que eles se rebelassem por conta própria.",
+      "Era um homem da elite, monarquista, e via a abolição também como forma de modernizar o país e evitar uma revolta social.",
+    ],
     citacao: { texto: "A escravidão permanecerá por muito tempo como a característica nacional do Brasil.", fonte: "Minha Formação, 1900" },
   },
   {
@@ -329,6 +392,11 @@ const MENTES = [
       { ano: 1956, texto: "O Território do Guaporé passa a se chamar Rondônia." },
     ],
     legado: "Abriu caminhos pelo país sem passar por cima de quem já estava lá.",
+    verdade: [
+      "O contato com povos isolados, mesmo pacífico, levou doenças como gripe e sarampo, que mataram muitos indígenas.",
+      "A política da época buscava \"integrar\" os indígenas à sociedade nacional, o que significava, na prática, que eles abandonassem seus modos de vida e suas terras.",
+      "As linhas telegráficas ficaram obsoletas pouco depois de concluídas, com a chegada do rádio.",
+    ],
     citacao: { texto: "Morrer se preciso for, matar nunca.", fonte: "Lema de Rondon" },
   },
   {
@@ -349,6 +417,10 @@ const MENTES = [
       { ano: 1910, texto: "Cria o Serviço de Proteção aos Índios." },
     ],
     legado: "Todo aluno de Instituto Federal estuda numa escola que ele imaginou.",
+    verdade: [
+      "Fez carreira dentro da política oligárquica da República Velha, marcada pelo voto de cabresto e por fraudes eleitorais, das quais também se beneficiou.",
+      "Seus adversários o atacavam pela cor da pele, e ele raramente falava da própria origem: sua identidade negra só foi resgatada muito depois.",
+    ],
   },
   {
     id: "oswaldo-cruz",
@@ -369,6 +441,10 @@ const MENTES = [
       { ano: 1907, texto: "Febre amarela controlada no Rio; medalha de ouro em Berlim." },
     ],
     legado: "A ciência brasileira que enfrentou epidemias no século XXI vem da casa que ele construiu.",
+    verdade: [
+      "A vacinação obrigatória foi feita de forma autoritária: agentes entravam nas casas sem explicação e vacinavam à força. Isso ajuda a explicar a revolta da população.",
+      "As campanhas de saúde vieram junto com a reforma urbana do Rio, que derrubou cortiços e expulsou os mais pobres do centro, empurrando-os para os morros.",
+    ],
   },
   {
     id: "santos-dumont",
@@ -389,6 +465,9 @@ const MENTES = [
       { ano: 1907, texto: "Cria o Demoiselle e divulga os planos." },
     ],
     legado: "Patrono da Aeronáutica Brasileira: inventou para o mundo, não para si.",
+    verdade: [
+      "Os irmãos Wright, nos Estados Unidos, já voavam desde 1903, mas sem plateia e, mais tarde, com ajuda de trilho e catapulta. Santos Dumont foi o primeiro a decolar por meios próprios diante de testemunhas e juízes oficiais. Quem foi \"o primeiro\" depende do critério, e o debate continua.",
+    ],
   },
   {
     id: "carlos-chagas",
@@ -408,6 +487,10 @@ const MENTES = [
       { ano: 1917, texto: "Assume a direção do Instituto Oswaldo Cruz." },
     ],
     legado: "Um dos feitos mais completos da história da medicina, feito no interior do Brasil.",
+    verdade: [
+      "Nem tudo o que ele afirmou estava certo: chegou a associar a doença ao bócio (papo), ideia que depois se mostrou errada.",
+      "Nos anos 1920 sua descoberta foi duramente contestada por colegas da Academia Nacional de Medicina, numa disputa em que também pesaram rivalidades pessoais.",
+    ],
   },
   {
     id: "villa-lobos",
@@ -428,6 +511,10 @@ const MENTES = [
       { ano: 1932, texto: "Passa a organizar o canto orfeônico nas escolas." },
     ],
     legado: "Mostrou que a música do povo brasileiro é música de primeira grandeza.",
+    verdade: [
+      "Trabalhou para o Estado Novo, a ditadura de Getúlio Vargas. O canto orfeônico nas escolas também servia de propaganda do regime e de culto ao líder.",
+      "Gostava de inventar histórias sobre a própria vida, como aventuras na Amazônia que provavelmente nunca aconteceram.",
+    ],
   },
   {
     id: "bertha-lutz",
@@ -449,6 +536,10 @@ const MENTES = [
       { ano: 1945, texto: "Assina a Carta da ONU." },
     ],
     legado: "Toda brasileira que vota exerce um direito pelo qual ela lutou.",
+    verdade: [
+      "O voto conquistado em 1932 não incluía todas: os analfabetos, a maioria da população pobre e negra, continuaram sem votar até 1985.",
+      "Seu movimento era formado sobretudo por mulheres da elite urbana e escolarizada, e foi criticado por deixar de lado as trabalhadoras.",
+    ],
   },
   {
     id: "nise-da-silveira",
@@ -489,6 +580,10 @@ const MENTES = [
       { ano: 1960, texto: "Publica Quarto de Despejo." },
     ],
     legado: "Lembra que o Brasil real precisa ser escutado na voz de quem o vive.",
+    verdade: [
+      "Depois do sucesso, foi tratada como curiosidade: a \"favelada que escreve\". Seus livros seguintes venderam pouco e ela morreu pobre.",
+      "Os diários foram editados e cortados antes da publicação. Só recentemente seus textos começaram a ser publicados como ela os escreveu.",
+    ],
     citacao: { texto: "O Brasil precisa ser dirigido por uma pessoa que já passou fome.", fonte: "Quarto de Despejo, 1960" },
   },
   {
@@ -511,6 +606,9 @@ const MENTES = [
       { ano: 2012, texto: "Declarado Patrono da Educação Brasileira." },
     ],
     legado: "Ler a palavra é ler o mundo e, então, poder mudá-lo.",
+    verdade: [
+      "É um dos autores mais admirados e também mais criticados do Brasil. Críticos dizem que seu método mistura educação e política e que os resultados de Angicos não foram acompanhados ao longo do tempo para saber se duraram.",
+    ],
     citacao: { texto: "Educação não transforma o mundo. Educação muda as pessoas. Pessoas transformam o mundo.", fonte: "Frase atribuída a Paulo Freire" },
   },
   {
@@ -533,6 +631,9 @@ const MENTES = [
       { ano: 1951, texto: "Participa da criação do CNPq." },
     ],
     legado: "Trocou a carreira no exterior por construir a ciência no Brasil.",
+    verdade: [
+      "É comum ouvir que ele \"perdeu o Nobel\". O prêmio de 1950 foi para Cecil Powell, chefe do grupo, como era a regra na época. A injustiça é debatida, mas não foi um caso isolado.",
+    ],
   },
   {
     id: "milton-santos",

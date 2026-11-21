@@ -1,0 +1,95 @@
+import { useEffect, useRef } from "react";
+
+// Cruzeiro do Sul, coordenadas relativas: Gacrux, Mimosa, Intrometida, Imai, Acrux
+const CRUZEIRO = [[0.52, 0], [0.12, 0.44], [0.66, 0.66], [0.86, 0.36], [0.45, 1]] as const;
+const LINHAS = [[0, 4], [1, 3]] as const;
+
+type Estrela = { x: number; y: number; r: number; fase: number; vel: number; prof: number };
+
+/** Céu estrelado com o Cruzeiro do Sul. Pausa fora da tela; estático para quem prefere menos movimento. */
+export function Ceu({ className }: { className?: string }) {
+  const ref = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = ref.current!;
+    const ctx = canvas.getContext("2d")!;
+    const parado = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let w = 0, h = 0, estrelas: Estrela[] = [], rodando = false, raf = 0;
+    let alvoX = 0, alvoY = 0, px = 0, py = 0;
+    let cadente: { x: number; y: number; vx: number; vy: number; vida: number } | null = null;
+
+    const montar = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      w = canvas.clientWidth; h = canvas.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // ponytail: quantidade proporcional à área, limitada para celulares fracos
+      const n = Math.min(260, Math.round((w * h) / 5500));
+      estrelas = Array.from({ length: n }, () => ({
+        x: Math.random() * w, y: Math.random() * h * 0.85, r: Math.random() * 1.2 + 0.2,
+        fase: Math.random() * Math.PI * 2, vel: 0.6 + Math.random() * 1.6, prof: 0.2 + Math.random() * 0.8,
+      }));
+      desenhar(0);
+    };
+
+    const cruzeiro = (t: number) => {
+      const largo = w > 760, tam = Math.min(w, h) * (largo ? 0.32 : 0.2);
+      const ox = w * (largo ? 0.8 : 0.82) - tam / 2 + px * 6, oy = h * (largo ? 0.12 : 0.09) + py * 6;
+      const pts = CRUZEIRO.map(([x, y]) => [ox + x * tam * 0.7, oy + y * tam] as const);
+      ctx.strokeStyle = "rgba(255,223,0,.18)"; ctx.lineWidth = 1;
+      for (const [a, b] of LINHAS) { ctx.beginPath(); ctx.moveTo(...pts[a]); ctx.lineTo(...pts[b]); ctx.stroke(); }
+      pts.forEach(([x, y], i) => {
+        const r = (i === 2 ? 1.6 : 2.6) + Math.sin(t * 1.5 + i) * 0.4;
+        const g = ctx.createRadialGradient(x, y, 0, x, y, r * 6);
+        g.addColorStop(0, "rgba(255,245,200,.9)"); g.addColorStop(1, "rgba(255,223,0,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, r * 6, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+      });
+    };
+
+    const desenhar = (t: number) => {
+      ctx.clearRect(0, 0, w, h);
+      for (const s of estrelas) {
+        const a = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * s.vel + s.fase));
+        ctx.fillStyle = `rgba(255,255,255,${a * s.prof})`;
+        ctx.beginPath(); ctx.arc(s.x + px * 14 * s.prof, s.y + py * 14 * s.prof, s.r, 0, Math.PI * 2); ctx.fill();
+      }
+      cruzeiro(t);
+      if (cadente) {
+        const c = cadente, g = ctx.createLinearGradient(c.x, c.y, c.x - c.vx * 14, c.y - c.vy * 14);
+        g.addColorStop(0, `rgba(255,255,255,${c.vida})`); g.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = g; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(c.x, c.y); ctx.lineTo(c.x - c.vx * 14, c.y - c.vy * 14); ctx.stroke();
+        c.x += c.vx; c.y += c.vy; c.vida -= 0.012;
+        if (c.vida <= 0) cadente = null;
+      } else if (!parado && Math.random() < 0.003) {
+        cadente = { x: Math.random() * w * 0.7, y: Math.random() * h * 0.3, vx: 7, vy: 3, vida: 1 };
+      }
+    };
+
+    const quadro = (ms: number) => {
+      if (!rodando) return;
+      px += (alvoX - px) * 0.05; py += (alvoY - py) * 0.05;
+      desenhar(ms / 1000);
+      raf = requestAnimationFrame(quadro);
+    };
+
+    const mover = (e: PointerEvent) => { alvoX = e.clientX / innerWidth - 0.5; alvoY = e.clientY / innerHeight - 0.5; };
+    const io = new IntersectionObserver(([e]) => {
+      const antes = rodando;
+      rodando = e.isIntersecting && !parado;
+      if (rodando && !antes) raf = requestAnimationFrame(quadro);
+    });
+
+    montar();
+    addEventListener("resize", montar);
+    addEventListener("pointermove", mover, { passive: true });
+    io.observe(canvas);
+    return () => {
+      rodando = false; cancelAnimationFrame(raf); io.disconnect();
+      removeEventListener("resize", montar); removeEventListener("pointermove", mover);
+    };
+  }, []);
+
+  return <canvas ref={ref} aria-hidden className={className} />;
+}
