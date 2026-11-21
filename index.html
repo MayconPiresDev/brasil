@@ -4,96 +4,135 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mentes do Brasil</title>
-<meta name="description" content="As mentes brilhantes que ajudaram a construir o Brasil.">
-<style>
-  :root { --bg:#fbf8f1; --fg:#1d2a22; --muted:#5b6a60; --card:#fff; --accent:#0a7c3e; --gold:#e0a800; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#111814; --fg:#e8efe9; --muted:#9fb0a4; --card:#1a241e; --accent:#3ccf7b; --gold:#ffcc33; }
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; font:17px/1.6 Georgia, "Times New Roman", serif; background:var(--bg); color:var(--fg); }
-  header { padding:4rem 1rem 2rem; text-align:center; border-bottom:6px solid var(--gold); }
-  h1 { font-size:clamp(2rem,6vw,3.2rem); margin:0; color:var(--accent); }
-  header p { color:var(--muted); max-width:40rem; margin:.5rem auto 0; }
-  nav { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin-top:1.5rem; }
-  nav a { color:var(--accent); text-decoration:none; border:1px solid var(--accent); border-radius:99px; padding:.2rem .8rem; font-size:.9rem; }
-  main { max-width:48rem; margin:0 auto; padding:2rem 1rem 4rem; display:grid; gap:1.5rem; }
-  article { background:var(--card); border-radius:12px; padding:1.5rem; border-left:6px solid var(--accent); box-shadow:0 2px 10px #0001; }
-  h2 { margin:0; }
-  .anos { color:var(--muted); font-style:italic; margin:0 0 .75rem; }
-  ul { padding-left:1.2rem; margin:.5rem 0 0; }
-  footer { text-align:center; color:var(--muted); font-size:.85rem; padding:2rem 1rem; }
-</style>
+<meta name="description" content="As histórias dos brasileiros e brasileiras que, com coragem, ciência e arte, construíram o país.">
+<meta property="og:title" content="Mentes do Brasil">
+<meta property="og:description" content="Conheça quem construiu o Brasil, para cuidarmos melhor dele.">
+<meta name="theme-color" content="#0b3d24">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23009c3b'/><path d='M50 14 90 50 50 86 10 50Z' fill='%23ffdf00'/><circle cx='50' cy='50' r='19' fill='%23002776'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>document.documentElement.classList.add("js")</script>
+<script src="js/data.js" defer></script>
+<script src="js/stars.js" defer></script>
+<script src="js/main.js" defer></script>
 </head>
 <body>
-<header>
-  <h1>Mentes do Brasil</h1>
-  <p>Homens que, com ideias, coragem e trabalho, ajudaram a construir o país.</p>
-  <nav>
-    <a href="#pedro2">Dom Pedro II</a>
-    <a href="#nilo">Nilo Peçanha</a>
-    <a href="#dragao">Dragão do Mar</a>
-    <a href="#reboucas">André Rebouças</a>
-    <a href="#machado">Machado de Assis</a>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<div class="progresso" aria-hidden="true"></div>
+
+<header class="topo">
+  <a class="marca" href="#inicio" aria-label="Mentes do Brasil, início">
+    <span class="marca-losango" aria-hidden="true"></span> Mentes do Brasil
+  </a>
+  <nav aria-label="Seções">
+    <a href="#galeria">Personagens</a>
+    <a href="#linha-do-tempo">Linha do tempo</a>
+    <a href="#seu-papel">Seu papel</a>
   </nav>
 </header>
 
-<main>
-  <article id="pedro2">
-    <h2>Dom Pedro II</h2>
-    <p class="anos">1825 – 1891 · Imperador do Brasil (1840 – 1889)</p>
-    <p>Governou por quase meio século e foi um dos chefes de Estado mais cultos do seu tempo. Falava vários idiomas e se correspondia com cientistas como Pasteur e Graham Bell.</p>
-    <ul>
-      <li>Apoiou a ciência, as artes e o Instituto Histórico e Geográfico Brasileiro.</li>
-      <li>Foi um dos primeiros a testar o telefone, na Exposição de Filadélfia, em 1876.</li>
-      <li>Foi no seu reinado que a Lei Áurea (1888) aboliu a escravidão.</li>
-    </ul>
-  </article>
+<section class="hero" id="inicio">
+  <canvas id="ceu" aria-hidden="true"></canvas>
+  <div class="hero-texto">
+    <p class="sobretitulo">Quatro séculos de história</p>
+    <h1 class="titulo-animado" aria-label="As mentes que construíram o Brasil">
+      <span>As</span> <span>mentes</span> <span>que</span> <span>construíram</span> <span class="ouro">o Brasil</span>
+    </h1>
+    <p class="hero-sub">Gente que, com coragem, ciência, arte e trabalho, fez deste país o que ele é. Conhecer essas histórias é o primeiro passo para cuidar melhor dele.</p>
+    <div class="hero-acoes">
+      <a class="botao" href="#galeria">Conhecer as histórias</a>
+      <button class="botao fantasma" type="button" id="aleatorio">Uma história ao acaso</button>
+    </div>
+  </div>
+  <a class="rolar" href="#manifesto" aria-label="Rolar para baixo"><span></span></a>
+</section>
 
-  <article id="nilo">
-    <h2>Nilo Peçanha</h2>
-    <p class="anos">1867 – 1924 · Presidente da República (1909 – 1910)</p>
-    <p>Nasceu em Campos dos Goytacazes (RJ), numa família humilde, e é considerado o primeiro presidente negro do Brasil.</p>
-    <ul>
-      <li>Criou em 1909 as Escolas de Aprendizes Artífices, que deram origem à atual rede de Institutos Federais.</li>
-      <li>Criou o Serviço de Proteção aos Índios (1910), dirigido pelo Marechal Rondon.</li>
-      <li>Recriou o Ministério da Agricultura, Indústria e Comércio.</li>
-    </ul>
-  </article>
+<main id="conteudo">
+  <section class="manifesto" id="manifesto">
+    <blockquote class="revelar">
+      <p>Um povo que não conhece a própria história não sabe o que tem a perder.</p>
+    </blockquote>
+    <div class="numeros">
+      <div class="revelar"><strong data-contar="0" id="n-pessoas">0</strong><span>brasileiros e brasileiras</span></div>
+      <div class="revelar"><strong data-contar="0" id="n-seculos">0</strong><span>séculos de história</span></div>
+      <div class="revelar"><strong data-contar="0" id="n-areas">0</strong><span>áreas em que mudaram o país</span></div>
+    </div>
+  </section>
 
-  <article id="dragao">
-    <h2>Francisco José do Nascimento, o Dragão do Mar</h2>
-    <p class="anos">1839 – 1914 · Jangadeiro e abolicionista</p>
-    <p>Prático do porto de Fortaleza, nascido em Aracati (CE), liderou em 1881 a greve dos jangadeiros: eles se recusaram a levar pessoas escravizadas até os navios que as vendiam para o Sul.</p>
-    <ul>
-      <li>O lema era: "No porto do Ceará não se embarcam mais escravos."</li>
-      <li>O movimento ajudou o Ceará a abolir a escravidão em 25 de março de 1884, quatro anos antes da Lei Áurea.</li>
-    </ul>
-  </article>
+  <section class="galeria" id="galeria" aria-labelledby="titulo-galeria">
+    <div class="secao-cabeca revelar">
+      <p class="sobretitulo">Personagens</p>
+      <h2 id="titulo-galeria">Quem construiu o Brasil</h2>
+      <p>Escolha uma área ou procure por um nome. Clique em um card para ler a história completa.</p>
+    </div>
 
-  <article id="reboucas">
-    <h2>André Rebouças</h2>
-    <p class="anos">1838 – 1898 · Engenheiro e abolicionista</p>
-    <p>Nascido em Cachoeira (BA), foi um dos maiores engenheiros do Império e um homem negro numa época em que isso era quase impossível.</p>
-    <ul>
-      <li>Projetou docas no Rio de Janeiro e trabalhou no abastecimento de água da cidade.</li>
-      <li>Ao lado de Joaquim Nabuco, fundou a Sociedade Brasileira Contra a Escravidão (1880).</li>
-      <li>Defendia a reforma agrária e terra para os libertos, a que chamava de "democracia rural".</li>
-      <li>Leal a Pedro II, partiu com a família imperial para o exílio em 1889.</li>
-    </ul>
-  </article>
+    <div class="filtros revelar">
+      <label class="busca">
+        <span class="sr">Buscar por nome</span>
+        <input type="search" id="busca" placeholder="Buscar por nome, lugar ou feito…" autocomplete="off">
+      </label>
+      <div class="chips" id="chips" role="group" aria-label="Filtrar por área"></div>
+    </div>
 
-  <article id="machado">
-    <h2>Machado de Assis</h2>
-    <p class="anos">1839 – 1908 · Escritor</p>
-    <p>Neto de escravizados alforriados, nasceu no Morro do Livramento (RJ) e aprendeu quase tudo sozinho. Tornou-se o maior escritor da literatura brasileira.</p>
-    <ul>
-      <li>Autor de <cite>Memórias Póstumas de Brás Cubas</cite>, <cite>Quincas Borba</cite> e <cite>Dom Casmurro</cite>.</li>
-      <li>Fundador e primeiro presidente da Academia Brasileira de Letras (1897).</li>
-    </ul>
-  </article>
+    <p class="contagem" id="contagem" aria-live="polite"></p>
+    <ul class="cards" id="cards"></ul>
+    <p class="vazio" id="vazio" hidden>Ninguém encontrado. Tente outro termo.</p>
+  </section>
+
+  <section class="linha" id="linha-do-tempo" aria-labelledby="titulo-linha">
+    <div class="secao-cabeca revelar">
+      <p class="sobretitulo">Linha do tempo</p>
+      <h2 id="titulo-linha">De Palmares ao século XXI</h2>
+      <p>Cada ponto é uma vida. Juntas, elas contam a história do país.</p>
+    </div>
+    <ol class="tempo" id="tempo"></ol>
+  </section>
+
+  <section class="papel" id="seu-papel" aria-labelledby="titulo-papel">
+    <div class="secao-cabeca revelar">
+      <p class="sobretitulo">E agora?</p>
+      <h2 id="titulo-papel">A história continua com você</h2>
+      <p>Nenhuma dessas pessoas esperou o país ficar pronto. Elas fizeram a sua parte. A nossa começa por coisas simples:</p>
+    </div>
+    <ol class="acoes">
+      <li class="revelar"><h3>Conheça</h3><p>Leia, visite museus, pergunte aos mais velhos. Quem conhece a história não aceita qualquer versão dela.</p></li>
+      <li class="revelar"><h3>Valorize a escola e a ciência</h3><p>De Nilo Peçanha a Paulo Freire, de Oswaldo Cruz a Lattes, o Brasil avançou quando investiu em conhecimento.</p></li>
+      <li class="revelar"><h3>Participe</h3><p>Vote com consciência, acompanhe quem você elegeu, envolva-se na sua comunidade. Bertha Lutz lutou anos pelo direito de votar.</p></li>
+      <li class="revelar"><h3>Cuide do que é de todos</h3><p>Praças, escolas, patrimônio histórico, rios e florestas. O que é público é nosso.</p></li>
+      <li class="revelar"><h3>Não se cale diante da injustiça</h3><p>Zumbi, Luiz Gama e o Dragão do Mar mostraram que a mudança começa quando alguém diz "não".</p></li>
+    </ol>
+  </section>
 </main>
 
-<footer>Feito com HTML e CSS. Sem frameworks.</footer>
+<footer class="rodape">
+  <p><strong>Mentes do Brasil</strong>: um projeto aberto de memória.</p>
+  <p>Os textos são resumos de domínio público. Encontrou um erro ou quer sugerir alguém? Contribua no repositório.</p>
+</footer>
+
+<dialog class="historia" id="historia" aria-labelledby="h-nome">
+  <article>
+    <button class="fechar" type="button" data-fechar aria-label="Fechar história">×</button>
+    <header class="h-cabeca">
+      <div class="monograma grande" id="h-mono" aria-hidden="true"></div>
+      <div>
+        <p class="h-apelido" id="h-apelido"></p>
+        <h2 id="h-nome"></h2>
+        <p class="h-meta" id="h-meta"></p>
+        <div class="tags" id="h-tags"></div>
+      </div>
+    </header>
+    <blockquote class="h-citacao" id="h-citacao" hidden></blockquote>
+    <div class="h-texto" id="h-texto"></div>
+    <h3>Marcos</h3>
+    <ol class="h-marcos" id="h-marcos"></ol>
+    <div class="h-legado"><h3>Legado</h3><p id="h-legado"></p></div>
+    <nav class="h-nav" aria-label="Outras histórias">
+      <button type="button" class="botao fantasma" id="h-ant">← Anterior</button>
+      <button type="button" class="botao fantasma" id="h-prox">Próxima →</button>
+    </nav>
+  </article>
+</dialog>
 </body>
 </html>
