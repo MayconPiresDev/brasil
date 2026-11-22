@@ -212,8 +212,12 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Mostrou que governar também é investir em conhecimento.",
     verdade: [
-      "Durante quase todo o seu reinado, a escravidão foi legal e o Brasil foi o último país das Américas a aboli-la. O imperador era contra a escravidão em princípio, mas agiu com muita cautela para não romper com os fazendeiros.",
-      "No seu governo aconteceu a Guerra do Paraguai (1864–1870). O Paraguai perdeu grande parte da sua população, e muitos soldados brasileiros eram escravizados enviados para lutar no lugar dos filhos de seus senhores.",
+      "Durante quase todo o seu reinado, a escravidão foi legal, e o Brasil foi o último país das Américas a aboli-la. O imperador era contra a escravidão em princípio, mas agiu com muita cautela para não romper com os fazendeiros.",
+      "No seu governo aconteceu a Guerra do Paraguai (1864–1870), em que o Paraguai perdeu grande parte da sua população. Em 1866, o governo libertou escravizados da nação para que fossem lutar, e muitos soldados negros ficaram conhecidos como \"voluntários a pau e corda\": recrutados à força.",
+    ],
+    fontes: [
+      { titulo: "Almanack (SciELO): a Lei do Ventre Livre e o recrutamento de 1866", url: "https://scielo.br/pdf/alm/n9/2236-4633-alm-9-00166.pdf" },
+      { titulo: "Revista USP: Dom Obá e os voluntários da pátria", url: "https://revistas.usp.br/revusp/article/download/33849/36582" },
     ],
   },
   {
@@ -346,8 +350,13 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "O 13 de maio fechou um capítulo, mas o país ainda devia aos libertos terra, escola e trabalho.",
     verdade: [
-      "O apelido de \"Redentora\" criou a ideia de que a abolição foi um presente da monarquia. Na verdade, ela veio depois de décadas de fugas em massa, quilombos, revoltas e campanha abolicionista.",
+      "O apelido de \"Redentora\" criou a ideia de que a abolição foi um presente da monarquia. Na verdade, ela veio depois de décadas de fugas em massa, quilombos, revoltas e campanha abolicionista, e o Ceará e o Amazonas já tinham abolido a escravidão em 1884.",
       "A Lei Áurea tem só dois artigos. Não previu terra, escola, trabalho nem indenização para os libertos, que foram deixados à própria sorte.",
+      "Historiadores ainda divergem sobre o papel dela: para uns, apenas assinou uma lei inevitável; para outros, articulou a abolição nos bastidores e pagou o preço político.",
+    ],
+    fontes: [
+      { titulo: "Pesquisa FAPESP: uma Redentora em busca de redenção", url: "https://revistapesquisa.fapesp.br/uma-redentora-em-busca-de-redencao/" },
+      { titulo: "Agência Senado: cem anos da morte da Princesa Isabel", url: "https://www12.senado.leg.br/noticias/especiais/arquivo-s/cem-anos-da-morte-da-princesa-isabel-a-regente-que-reinou-alem-do-machismo" },
     ],
   },
   {
@@ -497,8 +506,12 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "A ciência brasileira que enfrentou epidemias no século XXI vem da casa que ele construiu.",
     verdade: [
-      "A vacinação obrigatória foi feita de forma autoritária: agentes entravam nas casas sem explicação e vacinavam à força. Isso ajuda a explicar a revolta da população.",
-      "As campanhas de saúde vieram junto com a reforma urbana do Rio, que derrubou cortiços e expulsou os mais pobres do centro, empurrando-os para os morros.",
+      "As brigadas de saúde agiam de forma autoritária: entravam nas casas, mandavam fazer reformas, interditavam e até demoliam imóveis. A regulamentação da vacina obrigatória previa exigir o comprovante para matrícula na escola, emprego, viagem e casamento.",
+      "As campanhas de saúde vieram junto com a reforma urbana do prefeito Pereira Passos, que derrubou cortiços e expulsou os mais pobres do centro. A revolta de novembro de 1904 deixou dezenas de mortos, e a obrigatoriedade da vacina foi suspensa.",
+    ],
+    fontes: [
+      { titulo: "Fiocruz (EPSJV): a Revolta da Vacina", url: "https://www.epsjv.fiocruz.br/sites/default/files/livreto_2.pdf" },
+      { titulo: "Brown University: the Vaccine Riots in Rio de Janeiro", url: "https://library.brown.edu/create/fivecenturiesofchange/?p=654" },
     ],
   },
   {
@@ -521,7 +534,12 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Patrono da Aeronáutica Brasileira: inventou para o mundo, não para si.",
     verdade: [
-      "Os irmãos Wright, nos Estados Unidos, já voavam desde 1903, mas sem plateia e, mais tarde, com ajuda de trilho e catapulta. Santos Dumont foi o primeiro a decolar por meios próprios diante de testemunhas e juízes oficiais. Quem foi \"o primeiro\" depende do critério, e o debate continua.",
+      "Os irmãos Wright, nos Estados Unidos, voavam desde 1903, mas sem testemunhas oficiais e com a ajuda de um trilho de lançamento. Santos Dumont foi o primeiro a decolar por meios próprios diante de uma comissão do Aeroclube da França, que homologou o voo.",
+      "Por outro lado, o 14-bis não tinha controle lateral para fazer curvas, e os Wright já faziam voos controlados entre 1903 e 1906. Quem \"inventou o avião\" depende do critério, e o debate continua.",
+    ],
+    fontes: [
+      { titulo: "Christian Science Monitor: a century on, Brazil still claims flight's first", url: "https://www.csmonitor.com/2006/1023/p07s02-woam.html" },
+      { titulo: "Olhar Digital: quem inventou o avião?", url: "https://olhardigital.com.br/2023/01/03/tira-duvidas/quem-inventou-o-aviao/" },
     ],
   },
   {
@@ -662,8 +680,8 @@ export const MENTES: Pessoa[] = [
     resumo: "Educador que ensinou a ler o mundo, Patrono da Educação Brasileira.",
     historia: [
       "Passou fome na infância durante a crise de 1929 e percebeu cedo como a pobreza atrapalha o aprendizado. Formou-se em Direito, mas escolheu a educação.",
-      "Criou um método que alfabetiza adultos a partir das palavras da vida deles, como tijolo, enxada e salário. Em 1963, em Angicos, no Rio Grande do Norte, 300 trabalhadores aprenderam a ler e escrever em cerca de 40 horas.",
-      "Depois do golpe de 1964, foi preso e exilado. No Chile escreveu Pedagogia do Oprimido, uma das obras mais citadas do mundo nas ciências humanas. Voltou ao Brasil em 1980 e foi secretário de Educação de São Paulo.",
+      "Criou um método que alfabetiza adultos a partir das palavras da vida deles, como tijolo, enxada e salário. Em 1963, em Angicos, no Rio Grande do Norte, 380 adultos começaram o curso de cerca de 40 horas, e 300 concluíram, aprendendo a ler e escrever.",
+      "Depois do golpe de 1964, foi preso e exilado. No Chile escreveu Pedagogia do Oprimido, traduzida e estudada no mundo inteiro. Voltou ao Brasil em 1980 e foi secretário de Educação de São Paulo.",
     ],
     marcos: [
       { ano: 1921, texto: "Nasce no Recife." },
@@ -674,9 +692,14 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Ler a palavra é ler o mundo e, então, poder mudá-lo.",
     verdade: [
-      "É um dos autores mais admirados e também mais criticados do Brasil. Críticos dizem que seu método mistura educação e política e que os resultados de Angicos não foram acompanhados ao longo do tempo para saber se duraram.",
+      "É um dos autores mais admirados e também mais criticados do Brasil. Críticos dizem que seu método mistura educação e política.",
+      "Há muito escrito sobre as teorias de Freire e pouca pesquisa sobre a prática: um dos coordenadores de Angicos reconheceu que quase não se acompanhou o que aconteceu depois com os alunos, ou seja, se a alfabetização durou.",
     ],
     citacao: { texto: "Educação não transforma o mundo. Educação muda as pessoas. Pessoas transformam o mundo.", fonte: "Frase atribuída a Paulo Freire" },
+    fontes: [
+      { titulo: "Tribuna do Norte: Angicos virou exemplo mundial", url: "https://tribunadonorte.com.br/?p=432451" },
+      { titulo: "Revista Darcy (UnB): as 40 horas de Angicos", url: "https://revistadarcy.unb.br/images/PDF/edicao26/ensaio.pdf" },
+    ],
   },
   {
     id: "cesar-lattes",
@@ -687,7 +710,7 @@ export const MENTES: Pessoa[] = [
     resumo: "Físico que codescobriu o méson pi e ajudou a criar a ciência brasileira moderna.",
     historia: [
       "Aos 23 anos, trabalhando em Bristol, na Inglaterra, levou placas fotográficas ao Monte Chacaltaya, na Bolívia, para registrar raios cósmicos. Nelas apareceu uma partícula prevista mas nunca vista: o méson pi, ou píon.",
-      "A descoberta, de 1947, rendeu o Nobel de 1950 ao chefe do grupo, Cecil Powell. No ano seguinte, em Berkeley, Lattes conseguiu produzir píons artificialmente num acelerador pela primeira vez.",
+      "Lattes foi o primeiro autor do artigo da descoberta, publicado em 1947 na revista Nature. No ano seguinte, em Berkeley, com Eugene Gardner, foi o primeiro a observar píons produzidos artificialmente num acelerador.",
       "Voltou ao Brasil famoso e usou o prestígio para construir: ajudou a fundar o Centro Brasileiro de Pesquisas Físicas, em 1949, e a criar o CNPq, em 1951. O currículo de todo pesquisador brasileiro hoje fica na Plataforma Lattes.",
     ],
     marcos: [
@@ -699,7 +722,12 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Trocou a carreira no exterior por construir a ciência no Brasil.",
     verdade: [
-      "É comum ouvir que ele \"perdeu o Nobel\". O prêmio de 1950 foi para Cecil Powell, chefe do grupo, como era a regra na época. A injustiça é debatida, mas não foi um caso isolado.",
+      "O Nobel de Física de 1950 foi só para Cecil Powell, chefe do grupo de Bristol, onde Lattes era visitante. Lattes foi indicado sete vezes ao Nobel e nunca ganhou, e ele mesmo reclamou que Powell \"levou o Nobel para si\".",
+      "Há relatos de que o comitê chegou a considerar premiar Powell, Lattes e Gardner juntos, mas a morte precoce de Gardner, em 1950, teria mudado isso. É um relato de segunda mão.",
+    ],
+    fontes: [
+      { titulo: "Pesquisa FAPESP: a grande contribuição de Lattes", url: "https://revistapesquisa.fapesp.br/a-grande-contribuicao/" },
+      { titulo: "IF-USP: texto de Mauro Cattani sobre Cesar Lattes", url: "https://portal.if.usp.br/memoria/sites/portal.if.usp.br.ifusp/files/Mauro_Cattani_TextoCesarLattes.pdf" },
     ],
   },
   {
