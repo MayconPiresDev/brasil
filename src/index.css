@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+:root {
+  --verde: #009c3b;
+  --amarelo: #ffdf00;
+  --azul: #002776;
+  --background: #faf7ef;
+  --background-2: #f1ecdf;
+  --foreground: #17221b;
+  --card: #ffffff;
+  --card-foreground: #17221b;
+  --muted-foreground: #5a6a5f;
+  --border: #e3dccb;
+  --primary: #ffdf00;
+  --primary-foreground: #0b1d10;
+  --destaque: #0b6b35;
+  --ouro: #a37a00;
+  --ring: #0b6b35;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d1511;
+    --background-2: #121d17;
+    --foreground: #e9efe9;
+    --card: #16221b;
+    --card-foreground: #e9efe9;
+    --muted-foreground: #9db0a3;
+    --border: #24352b;
+    --destaque: #3fd17f;
+    --ouro: #ffd23f;
+    --ring: #3fd17f;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-2: var(--background-2);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-destaque: var(--destaque);
+  --color-ouro: var(--ouro);
+  --color-verde: var(--verde);
+  --color-amarelo: var(--amarelo);
+  --color-azul: var(--azul);
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-background font-sans text-foreground antialiased; overflow-x: hidden; }
+  h1, h2, h3 { @apply font-serif; }
+  :focus-visible { outline: 3px solid var(--amarelo); outline-offset: 3px; }
+}
+
+/* Cor de cada área: componentes recebem --c e usam .texto-area para manter contraste no escuro */
+.texto-area { color: var(--c); }
+@media (prefers-color-scheme: dark) {
+  .texto-area { color: color-mix(in srgb, var(--c) 55%, #fff); }
+}
+.fundo-area { background: color-mix(in srgb, var(--c) 13%, transparent); }
+
+.brilho-ouro {
+  background: linear-gradient(100deg, #ffdf00, #ffb800 40%, #fff2a8 50%, #ffb800 60%, #ffdf00);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: brilho 6s 1.6s ease-in-out infinite;
+}
+
+@keyframes brilho { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes dialog-in { from { opacity: 0; transform: translate(-50%, calc(-50% + 30px)) scale(.97); } }
+@keyframes rolar { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(16px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
