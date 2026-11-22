@@ -18,6 +18,8 @@ export interface Pessoa {
   /** O que o mito costuma esconder. Fatos documentados ou o debate entre historiadores. */
   verdade?: string[];
   citacao?: { texto: string; fonte: string };
+  /** Onde conferir o que está escrito, sobretudo em "verdade". */
+  fontes?: { titulo: string; url: string }[];
   /** Para quem não tem retrato autêntico: a imagem é uma representação artística. */
   imagem?: "foto" | "pintura" | "imaginada";
 }
@@ -40,25 +42,34 @@ export const MENTES: Pessoa[] = [
     nascimento: 1655, morte: 1695,
     local: "Serra da Barriga, Alagoas",
     areas: ["liberdade"],
-    resumo: "Líder guerreiro do Quilombo dos Palmares. Herói da resistência negra e figura cheia de contradições.",
+    resumo: "Chefe guerreiro de Palmares. Símbolo da resistência negra e, ao mesmo tempo, líder violento num quilombo que também tinha cativos.",
     historia: [
       "Nasceu livre em Palmares, um conjunto de comunidades formadas por pessoas que fugiram da escravidão na Serra da Barriga. Ainda criança, foi capturado e entregue a um padre, que o batizou de Francisco e o ensinou a ler. Aos quinze anos fugiu e voltou para casa.",
-      "Palmares chegou a reunir milhares de pessoas e resistiu por quase um século a dezenas de expedições militares. Quando o líder Ganga Zumba aceitou um acordo de paz com o governo colonial, Zumbi recusou: a paz oferecida não libertava os que continuavam escravizados fora do quilombo.",
-      "Zumbi não era um intelectual: era um chefe militar, num mundo de guerra permanente. Assumiu a liderança e resistiu até 1694, quando o bandeirante Domingos Jorge Velho destruiu a capital, Macaco. Zumbi escapou, mas foi traído e morto em 20 de novembro de 1695. A data de sua morte virou o Dia da Consciência Negra.",
+      "Palmares não era uma aldeia só, mas vários mocambos, com milhares de pessoas, que resistiram por quase um século a dezenas de expedições militares. Em 1678, o rei Ganga Zumba, tio de Zumbi, aceitou um acordo de paz com o governo de Pernambuco. Zumbi rompeu com o tio e liderou os que recusaram o acordo.",
+      "Pouco depois, Ganga Zumba morreu envenenado, e Zumbi se tornou o principal chefe de Palmares.",
+      "Zumbi não era um intelectual: era um chefe militar, num mundo de guerra permanente. Resistiu até 1694, quando o bandeirante Domingos Jorge Velho destruiu a capital, Macaco. Zumbi escapou, mas foi traído e morto em 20 de novembro de 1695. A data de sua morte virou o Dia da Consciência Negra.",
     ],
     marcos: [
       { ano: 1655, texto: "Nasce no Quilombo dos Palmares." },
-      { ano: 1678, texto: "Recusa o acordo de paz aceito por Ganga Zumba." },
+      { ano: 1678, texto: "Rompe com o tio, Ganga Zumba, que aceitou um acordo de paz." },
+      { ano: 1680, texto: "Ganga Zumba morre envenenado; Zumbi assume a liderança (data discutida)." },
       { ano: 1694, texto: "Queda do Macaco, a capital de Palmares." },
       { ano: 1695, texto: "É morto em 20 de novembro." },
       { ano: 2024, texto: "O 20 de novembro passa a ser feriado nacional." },
     ],
     legado: "Palmares mostra que a escravidão foi combatida desde o início. Zumbi virou símbolo sobretudo no século XX, e o símbolo é maior que o homem que conhecemos.",
     verdade: [
-      "Quase tudo o que se sabe sobre Zumbi vem de documentos escritos por seus inimigos: autoridades coloniais e militares que o combatiam.",
-      "Esses relatos registram que em Palmares também havia cativos. Pessoas capturadas nos ataques a fazendas e povoados, e quem não tinha fugido por vontade própria, podiam ser mantidas em servidão. Na África e nas Américas daquele tempo, a escravidão de prisioneiros de guerra era comum.",
-      "Os ataques do quilombo às vilas vizinhas para obter armas, mantimentos e pessoas eram violentos. Historiadores ainda debatem o quanto disso é exagero da propaganda colonial e o quanto é fato.",
-      "Não existe nenhum retrato de Zumbi. As imagens conhecidas são representações criadas séculos depois.",
+      "Quase tudo o que se sabe sobre Zumbi vem de documentos escritos por seus inimigos: autoridades coloniais e militares portugueses.",
+      "Zumbi chegou ao poder rompendo com o próprio tio, Ganga Zumba, que morreu envenenado. Parte dos historiadores atribui a morte a Zumbi ou a seus aliados; outros apontam que não há prova e que os portugueses também tinham motivo. Não há consenso.",
+      "Havia cativos em Palmares: o próprio acordo de 1678 exigia que fossem devolvidos aos senhores os cativos que não tinham nascido nos mocambos. Se Zumbi pessoalmente mantinha escravizados é tema de debate entre historiadores, e há quem, como Silvia Lara (Unicamp), conteste essa leitura.",
+      "Era um chefe de guerra. Os ataques de Palmares a engenhos e povoados para obter armas, mantimentos e pessoas eram violentos e deixavam mortos.",
+      "Não existe nenhum retrato de Zumbi. A imagem usada aqui é uma pintura de Antônio Parreiras, feita mais de 200 anos depois.",
+    ],
+    fontes: [
+      { titulo: "Pesquisa FAPESP: documentos originais revelam novos aspectos de Palmares", url: "https://revistapesquisa.fapesp.br/documentos-originais-revelam-novos-aspectos-da-historia-de-palmares/" },
+      { titulo: "Brasil de Fato: existiu escravidão em Palmares? (Silvia Lara)", url: "https://www.brasildefato.com.br/2023/11/22/existiu-escravidao-em-palmares-historiadora-explica-equivocos-sobre-tema" },
+      { titulo: "Gazeta do Povo: o que sabemos sobre Zumbi", url: "https://www.gazetadopovo.com.br/ideias/sabemos-sobre-zumbi-palmares/" },
+      { titulo: "Encyclopedia.com: Ganga Zumba", url: "https://encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/ganga-zumba-1680" },
     ],
   },
   {
@@ -84,9 +95,13 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Mostrou que o talento brasileiro cria algo próprio, mesmo nas piores condições.",
     verdade: [
-      "Quase toda a sua biografia vem de um único texto, escrito por Rodrigo Bretas em 1858, mais de quarenta anos após sua morte. Parte dela pode ser lenda.",
-      "Muitas obras atribuídas a ele foram feitas, ao menos em parte, pela sua oficina de ajudantes e escravizados.",
+      "Quase toda a sua biografia vem de um único texto, escrito por Rodrigo Bretas em 1858, mais de quarenta anos após sua morte. Historiadores apontam que Bretas romantizou a história, talvez inspirado em O Corcunda de Notre-Dame.",
+      "Até a data de nascimento é incerta: o registro de batismo indica 1730, e Bretas escreveu 1738.",
+      "Muitas obras atribuídas a ele foram feitas, ao menos em parte, pela sua oficina, que incluía escravizados.",
       "Não há retrato autêntico. A imagem mais conhecida é um \"suposto retrato\".",
+    ],
+    fontes: [
+      { titulo: "Pesquisa FAPESP: Paranoia ou mistificação?", url: "https://revistapesquisa.fapesp.br/paranoia-ou-mistificacao/" },
     ],
   },
   {
@@ -111,11 +126,14 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "O 21 de abril lembra que a ideia de um Brasil livre custou vidas.",
     verdade: [
-      "A imagem de Tiradentes barbudo e cabeludo, parecido com Cristo, foi criada décadas depois pela República, que precisava de um herói. Como militar preso, ele provavelmente tinha barba e cabelo raspados.",
+      "Não existe nenhum retrato feito em vida. A imagem de barba e cabelos longos, parecida com Cristo, foi criada no fim do século XIX, quando a República precisava de um mártir. Ninguém sabe como era o seu rosto.",
       "A Inconfidência foi um movimento da elite mineira, motivado sobretudo pelos impostos. O plano não previa o fim da escravidão: vários inconfidentes eram donos de escravizados.",
       "Ele foi o único executado também porque era o de menor posição social do grupo.",
     ],
     citacao: { texto: "Se dez vidas eu tivesse, dez vidas eu daria.", fonte: "Frase atribuída a Tiradentes" },
+    fontes: [
+      { titulo: "Pesquisa FAPESP: Representação de um herói", url: "https://revistapesquisa.fapesp.br/representacao-de-um-heroi/" },
+    ],
   },
   {
     id: "jose-bonifacio",
@@ -142,6 +160,9 @@ export const MENTES: Pessoa[] = [
       "Como ministro, perseguiu adversários políticos: em 1822 abriu processos e mandou prender e deportar opositores, episódio conhecido como \"Bonifácia\".",
       "Defendia o fim da escravidão, mas de forma lenta e gradual, para não prejudicar a economia dos proprietários.",
     ],
+    fontes: [
+      { titulo: "Revista Princípios: a Bonifácia, primeira devassa política do Brasil", url: "https://revistaprincipios.emnuvens.com.br/principios/article/download/186/103" },
+    ],
   },
   {
     id: "maria-firmina-dos-reis",
@@ -162,6 +183,13 @@ export const MENTES: Pessoa[] = [
       { ano: 1880, texto: "Funda uma escola mista e gratuita." },
     ],
     legado: "Deu voz a quem a literatura da época tratava como objeto.",
+    verdade: [
+      "Não existe nenhum retrato autêntico dela. A imagem que circula na internet foi criada a partir de descrições orais recolhidas por seu biógrafo. Por isso, este site não usa nenhuma.",
+      "Até o ano de nascimento é incerto: as fontes falam em 1822 ou 1825.",
+    ],
+    fontes: [
+      { titulo: "Rafael Balseiro Zin (Sesc SP): a representação pictórica de Maria Firmina", url: "https://sescsp.org.br/wp-content/uploads/2024/10/RAFAEL-BALSEIRO-ZIN.pdf" },
+    ],
   },
   {
     id: "dom-pedro-ii",
@@ -194,11 +222,11 @@ export const MENTES: Pessoa[] = [
     nascimento: 1830, morte: 1882,
     local: "Salvador, Bahia",
     areas: ["liberdade", "letras"],
-    resumo: "Vendido como escravo pelo próprio pai, libertou mais de 500 pessoas nos tribunais.",
+    resumo: "Vendido como escravo pelo próprio pai, libertou centenas de pessoas nos tribunais.",
     historia: [
       "Nasceu livre, filho de Luísa Mahin, uma africana liberta, e de um fidalgo português. Aos dez anos, o pai, endividado, o vendeu ilegalmente como escravo. Foi levado para São Paulo.",
       "Aprendeu a ler aos dezessete anos, conseguiu provar que tinha nascido livre e fugiu. Trabalhou como escrivão, virou poeta e jornalista e estudou Direito sozinho: foi impedido de cursar a faculdade, mas atuou como rábula, um advogado sem diploma.",
-      "Usando as próprias leis do Império, conseguiu nos tribunais a liberdade de mais de 500 pessoas escravizadas. Quando morreu, em 1882, milhares de pessoas acompanharam seu enterro pelas ruas de São Paulo.",
+      "Usando as próprias leis do Império, conseguiu nos tribunais a liberdade de centenas de pessoas escravizadas. Quando morreu, em 1882, milhares de pessoas acompanharam seu enterro pelas ruas de São Paulo.",
     ],
     marcos: [
       { ano: 1830, texto: "Nasce livre em Salvador." },
@@ -209,11 +237,17 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Transformou a lei, feita para oprimir, em ferramenta de libertação.",
     verdade: [
-      "Sua mãe, Luísa Mahin, é conhecida quase só pelo que o próprio Luiz Gama escreveu sobre ela. Muito do que se conta sobre a participação dela em revoltas na Bahia não tem comprovação em documentos.",
+      "O número \"mais de 500 libertados\" é repetido há décadas, mas nunca foi comprovado por uma contagem dos processos. O caso mais bem documentado é a Questão Netto, de 1869, com 217 pessoas libertadas.",
+      "Sua mãe, Luísa Mahin, é conhecida quase só pelo que ele próprio escreveu numa carta de 1880. Uma pesquisa de 2025 encontrou documentos que confirmam que ela era sua mãe, mas nenhum que comprove sua participação na Revolta dos Malês, como diz a lenda.",
+    ],
+    fontes: [
+      { titulo: "Agência Brasil: a luta de Luiz Gama inspira pesquisa", url: "https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2026-05/luta-de-luiz-gama-contra-racismo-inspira-acoes-arte-e-pesquisa" },
+      { titulo: "Brasil de Fato: artigo confirma Luiza Mahin como mãe de Luiz Gama", url: "https://www.brasildefato.com.br/podcast/bem-viver/2025/07/31/artigo-inedito-confirma-luiza-mahin-como-mae-de-luiz-gama/" },
     ],
   },
   {
     id: "andre-reboucas",
+    imagem: "pintura",
     nome: "André Rebouças",
     nascimento: 1838, morte: 1898,
     local: "Cachoeira, Bahia",
@@ -253,10 +287,14 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Provou que uma recusa coletiva de trabalhadores comuns pode mudar o rumo de um país.",
     verdade: [
-      "A greve não foi obra de um homem só: teve apoio e organização de sociedades abolicionistas cearenses, como a Sociedade Cearense Libertadora, formadas em boa parte por gente da elite letrada.",
-      "A grande seca de 1877–1879 tinha empobrecido os proprietários cearenses, que já vendiam seus escravizados para o Sul. Isso ajudou a tornar a abolição no Ceará mais rápida do que em outras províncias.",
+      "A greve não foi obra de um homem só. A Sociedade Cearense Libertadora, formada em boa parte por abolicionistas brancos e ricos, organizou o movimento e escolheu o Dragão do Mar como seu símbolo.",
+      "Libertos como José Luís Napoleão e Tia Simoa tiveram papel decisivo e foram quase apagados da história, enquanto o Dragão do Mar virou lenda.",
     ],
     citacao: { texto: "No porto do Ceará não se embarcam mais escravos.", fonte: "Lema da greve dos jangadeiros, 1881" },
+    fontes: [
+      { titulo: "O POVO: Napoleão, Tia Simoa e outros dragões do mar", url: "https://mais.opovo.com.br/reportagens-especiais/dragoes-do-ceara/2021/01/27/napoleao--tia-simoa-e-outros-dragoes-do-mar.html" },
+      { titulo: "Cadernos do Sertão (UECE): o Dragão do Mar como símbolo", url: "https://revistas.uece.br/index.php/cadernospesquisadosertao/article/download/9675/7886/37272" },
+    ],
   },
   {
     id: "machado-de-assis",
@@ -279,10 +317,14 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "A prova de que o gênio brasileiro nasce em qualquer lugar, inclusive no morro.",
     verdade: [
-      "Durante muito tempo foi retratado como um homem branco. Sua certidão de óbito o registrou como \"branco\", e fotos e ilustrações clarearam sua pele. Só nas últimas décadas sua origem negra foi plenamente reconhecida.",
+      "Durante muito tempo foi retratado como homem branco. Sua certidão de óbito registra a cor \"branca\", e fotos e ilustrações clarearam sua pele. Só nas últimas décadas sua origem negra foi plenamente reconhecida.",
+      "Circula a história de que ele teria pedido para ser enterrado como branco. O historiador Sidney Chalhoub afirma que isso não é verdade.",
       "Foi criticado por não ter militado abertamente no abolicionismo. Pesquisas recentes mostram que a crítica à escravidão está em sua obra, por meio da ironia.",
     ],
     citacao: { texto: "Ao vencedor, as batatas!", fonte: "Quincas Borba, 1891" },
+    fontes: [
+      { titulo: "Estado de Minas: o que a negritude de Machado diz sobre o Brasil", url: "https://www.em.com.br/cultura/2024/11/6991894-o-que-a-negritude-de-machado-de-assis-diz-sobre-como-brasil-lida-com-racismo.html" },
+    ],
   },
   {
     id: "princesa-isabel",
@@ -351,10 +393,13 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Mostrou que acabar com a escravidão era só o começo: era preciso desfazer sua obra.",
     verdade: [
-      "Defendia uma abolição feita \"de cima\", pelo Parlamento. Em O Abolicionismo, escreveu que a campanha não se dirigia aos escravizados, e era contra que eles se rebelassem por conta própria.",
+      "Defendia uma abolição feita \"de cima\", pelo Parlamento. Em O Abolicionismo escreveu que \"a propaganda abolicionista não se dirige aos escravos\": a mudança deveria vir das leis, não de uma revolta dos cativos.",
       "Era um homem da elite, monarquista, e via a abolição também como forma de modernizar o país e evitar uma revolta social.",
     ],
     citacao: { texto: "A escravidão permanecerá por muito tempo como a característica nacional do Brasil.", fonte: "Minha Formação, 1900" },
+    fontes: [
+      { titulo: "O Abolicionismo, texto completo (SciELO Livros)", url: "https://static.scielo.org/scielobooks/cs454/pdf/nabuco-9788579820700.pdf" },
+    ],
   },
   {
     id: "vital-brazil",
@@ -397,11 +442,14 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Abriu caminhos pelo país sem passar por cima de quem já estava lá.",
     verdade: [
-      "O contato com povos isolados, mesmo pacífico, levou doenças como gripe e sarampo, que mataram muitos indígenas.",
-      "A política da época buscava \"integrar\" os indígenas à sociedade nacional, o que significava, na prática, que eles abandonassem seus modos de vida e suas terras.",
+      "Os contatos com povos isolados abriram caminho para doenças como gripe e sarampo, que historicamente dizimaram populações indígenas. O tamanho desse efeito na época da Comissão ainda é pouco estudado.",
+      "Rondon queria \"integrar\" os indígenas à nação, ainda que pela persuasão e não pela força. Na prática, essa política esperava que eles abandonassem seus modos de vida.",
       "As linhas telegráficas ficaram obsoletas pouco depois de concluídas, com a chegada do rádio.",
     ],
     citacao: { texto: "Morrer se preciso for, matar nunca.", fonte: "Lema de Rondon" },
+    fontes: [
+      { titulo: "Ciência & Saúde Coletiva: a Comissão Rondon e os povos indígenas", url: "https://scielosp.org/pdf/csc/2024.v29n10/e02592024/pt" },
+    ],
   },
   {
     id: "nilo-pecanha",
@@ -422,8 +470,11 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Todo aluno de Instituto Federal estuda numa escola que ele imaginou.",
     verdade: [
+      "Seus retratos oficiais eram retocados para clarear a sua pele. A própria família negou por muito tempo sua ascendência negra, e por isso alguns historiadores ainda discutem como classificá-lo.",
       "Fez carreira dentro da política oligárquica da República Velha, marcada pelo voto de cabresto e por fraudes eleitorais, das quais também se beneficiou.",
-      "Seus adversários o atacavam pela cor da pele, e ele raramente falava da própria origem: sua identidade negra só foi resgatada muito depois.",
+    ],
+    fontes: [
+      { titulo: "Correio Braziliense: quem foi o primeiro presidente negro do Brasil", url: "https://www.correiobraziliense.com.br/mundo/2024/11/6992789-quem-foi-o-1-e-unico-presidente-negro-do-brasil.html" },
     ],
   },
   {
@@ -492,8 +543,11 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Um dos feitos mais completos da história da medicina, feito no interior do Brasil.",
     verdade: [
-      "Nem tudo o que ele afirmou estava certo: chegou a associar a doença ao bócio (papo), ideia que depois se mostrou errada.",
-      "Nos anos 1920 sua descoberta foi duramente contestada por colegas da Academia Nacional de Medicina, numa disputa em que também pesaram rivalidades pessoais.",
+      "Nem tudo o que ele defendeu se confirmou: chegou a propor que o parasita causava o bócio endêmico (papo), associação que nunca foi comprovada.",
+      "Em 1922 e 1923, sua descoberta foi duramente contestada na Academia Nacional de Medicina, numa disputa em que também pesaram rivalidades pessoais.",
+    ],
+    fontes: [
+      { titulo: "História, Ciências, Saúde – Manguinhos: Chagas e as controvérsias (1909–1923)", url: "https://www.scielo.br/j/hcsm/a/spypkKQSy4JBGMv5RdRqXNj/" },
     ],
   },
   {
@@ -516,8 +570,10 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Mostrou que a música do povo brasileiro é música de primeira grandeza.",
     verdade: [
-      "Trabalhou para o Estado Novo, a ditadura de Getúlio Vargas. O canto orfeônico nas escolas também servia de propaganda do regime e de culto ao líder.",
-      "Gostava de inventar histórias sobre a própria vida, como aventuras na Amazônia que provavelmente nunca aconteceram.",
+      "Trabalhou para o Estado Novo, a ditadura de Getúlio Vargas. O canto orfeônico nas escolas também servia para promover a imagem de Vargas e legitimar o regime.",
+    ],
+    fontes: [
+      { titulo: "Revista Fênix: canto orfeônico e o Estado Novo", url: "https://revistafenix.pro.br/revistafenix/article/download/1084/1039/2801" },
     ],
   },
   {
@@ -541,8 +597,12 @@ export const MENTES: Pessoa[] = [
     ],
     legado: "Toda brasileira que vota exerce um direito pelo qual ela lutou.",
     verdade: [
-      "O voto conquistado em 1932 não incluía todas: os analfabetos, a maioria da população pobre e negra, continuaram sem votar até 1985.",
-      "Seu movimento era formado sobretudo por mulheres da elite urbana e escolarizada, e foi criticado por deixar de lado as trabalhadoras.",
+      "O voto de 1932 veio com limites: segundo a Câmara dos Deputados, casadas precisavam da autorização do marido, e solteiras e viúvas, de renda própria. O voto só passou a ser obrigatório também para as mulheres em 1946.",
+      "Os analfabetos, a maioria da população pobre e negra, homens e mulheres, só puderam votar em 1985.",
+      "Historiadores lembram que o voto feminino também atendeu a interesses políticos do governo Vargas, e não foi só fruto da campanha das sufragistas.",
+    ],
+    fontes: [
+      { titulo: "Câmara dos Deputados: a conquista do voto feminino", url: "https://www.camara.leg.br/internet/agencia/infograficos-html5/a-conquista-do-voto-feminino/index.html" },
     ],
   },
   {
@@ -586,9 +646,12 @@ export const MENTES: Pessoa[] = [
     legado: "Lembra que o Brasil real precisa ser escutado na voz de quem o vive.",
     verdade: [
       "Depois do sucesso, foi tratada como curiosidade: a \"favelada que escreve\". Seus livros seguintes venderam pouco e ela morreu pobre.",
-      "Os diários foram editados e cortados antes da publicação. Só recentemente seus textos começaram a ser publicados como ela os escreveu.",
+      "Quarto de Despejo foi editado por Audálio Dantas, que cortou trechos e escolheu o que entraria. Os manuscritos são muito mais longos e bem diferentes do livro publicado.",
     ],
     citacao: { texto: "O Brasil precisa ser dirigido por uma pessoa que já passou fome.", fonte: "Quarto de Despejo, 1960" },
+    fontes: [
+      { titulo: "Instituto Moreira Salles: Carolina Maria de Jesus", url: "https://carolinamariadejesus.ims.com.br/elzira" },
+    ],
   },
   {
     id: "paulo-freire",

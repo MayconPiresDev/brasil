@@ -14,15 +14,21 @@ const TITULOS = {
   "bertha-lutz": "Bertha Lutz", "nise-da-silveira": "Nise da Silveira",
   "carolina-maria-de-jesus": "Carolina Maria de Jesus", "paulo-freire": "Paulo Freire",
   "cesar-lattes": "César Lattes", "milton-santos": "Milton Santos",
-  // maria-firmina-dos-reis fica de fora: o "retrato" que circula dela é de outra pessoa.
+  // maria-firmina-dos-reis fica de fora: não existe retrato autêntico dela.
 };
 
 const UA = { "User-Agent": "MentesDoBrasil/1.0 (educational static site)" };
 const api = async (host, params) => {
   const url = `https://${host}/w/api.php?` + new URLSearchParams({ action: "query", format: "json", ...params });
-  const r = await fetch(url, { headers: UA });
-  if (!r.ok) throw new Error(`${host}: HTTP ${r.status}`);
-  return (await r.json()).query;
+  // o Wikimedia limita o ritmo (HTTP 429): respeita o Retry-After e tenta de novo
+  for (let tentativa = 1; ; tentativa++) {
+    const r = await fetch(url, { headers: UA });
+    if (r.ok) return (await r.json()).query;
+    if (r.status !== 429 || tentativa === 8) throw new Error(`${host}: HTTP ${r.status}`);
+    const espera = Math.min(Number(r.headers.get("retry-after")) || 60, 300);
+    console.warn(`${host}: 429, nova tentativa em ${espera}s`);
+    await new Promise((ok) => setTimeout(ok, espera * 1000));
+  }
 };
 const limpar = (html = "") => html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
 
@@ -50,8 +56,8 @@ for (const p of Object.values(commons.pages)) {
   if (!id || !ii) { console.warn("fora do Commons:", p.title); continue; }
   const md = ii.extmetadata ?? {};
   fotos[id] = {
-    src: ii.thumburl,
-    autor: limpar(md.Artist?.value).slice(0, 80) || "Autor desconhecido",
+    src: ii.thumburl.split("?")[0],
+    autor: /unknown|desconhecid/i.test(limpar(md.Artist?.value)) ? "Autor desconhecido" : limpar(md.Artist?.value).slice(0, 80) || "Autor desconhecido",
     licenca: limpar(md.LicenseShortName?.value) || "ver página",
     fonte: ii.descriptionurl,
   };
