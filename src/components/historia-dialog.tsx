@@ -114,6 +114,17 @@ function Conteudo({ p, aoTrocar }: { p: Pessoa; aoTrocar: (id: string) => void }
         <p>{p.legado}</p>
       </div>
 
+      {p.fontes && (
+        <div className="mt-6">
+          <h3 className="mb-2 text-base font-bold">Para conferir</h3>
+          <ul className="list-disc space-y-1 pl-5 text-sm">
+            {p.fontes.map((x) => (
+              <li key={x.url}><a className="text-destaque underline underline-offset-2" href={x.url} target="_blank" rel="noreferrer">{x.titulo}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {f && (
         <p className="mt-5 text-xs text-muted-foreground">
           Imagem: {f.autor} · {f.licenca} · <a className="underline" href={f.fonte} target="_blank" rel="noreferrer">Wikimedia Commons</a>
