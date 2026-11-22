@@ -35,6 +35,7 @@ export const AREAS = {
 export const MENTES: Pessoa[] = [
   {
     id: "zumbi-dos-palmares",
+    imagem: "imaginada",
     nome: "Zumbi dos Palmares",
     nascimento: 1655, morte: 1695,
     local: "Serra da Barriga, Alagoas",
@@ -62,6 +63,7 @@ export const MENTES: Pessoa[] = [
   },
   {
     id: "aleijadinho",
+    imagem: "imaginada",
     nome: "Antônio Francisco Lisboa",
     apelido: "Aleijadinho",
     nascimento: 1738, morte: 1814,
@@ -89,6 +91,7 @@ export const MENTES: Pessoa[] = [
   },
   {
     id: "tiradentes",
+    imagem: "imaginada",
     nome: "Joaquim José da Silva Xavier",
     apelido: "Tiradentes",
     nascimento: 1746, morte: 1792,
@@ -116,6 +119,7 @@ export const MENTES: Pessoa[] = [
   },
   {
     id: "jose-bonifacio",
+    imagem: "pintura",
     nome: "José Bonifácio de Andrada e Silva",
     nascimento: 1763, morte: 1838,
     local: "Santos, São Paulo",

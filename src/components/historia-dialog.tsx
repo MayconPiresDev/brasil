@@ -54,7 +54,7 @@ function Conteudo({ p, aoTrocar }: { p: Pessoa; aoTrocar: (id: string) => void }
       <header className="relative mb-7 flex flex-col gap-5 sm:flex-row sm:items-center">
         {f ? (
           <figure className="shrink-0">
-            <img src={f.src} alt={`Retrato de ${nomeExibido(p)}`} className="h-44 w-36 rounded-2xl object-cover object-top shadow-xl ring-4 ring-card" />
+            <Retrato p={p} className="h-44 w-36 rounded-2xl shadow-xl ring-4" />
             {aviso && <figcaption className="mt-1.5 max-w-36 text-[0.7rem] leading-tight text-muted-foreground">{aviso}</figcaption>}
           </figure>
         ) : (
